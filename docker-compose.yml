@@ -1,0 +1,70 @@
+version: '3.8'
+
+services:
+  api:
+    build:
+      context: ./api
+    image: ghcr.io/ashishkapoor/fintrack-api:latest
+    command: sh -c "make run"
+    volumes:
+      - ./api:/app
+    ports:
+      - "8000:8000"
+    env_file:
+      - ./api/.env.dev
+    environment:
+      - DJANGO_SETTINGS_MODULE=app.settings.dev
+    depends_on:
+      - migrate
+      - db
+    networks:
+      - fintrack_network
+    restart: always
+
+  migrate:
+    build:
+      context: ./api
+    image: ghcr.io/ashishkapoor/fintrack-migrate:latest
+    working_dir: /app
+    entrypoint: ["sh", "./entrypoint.migrate.sh"]
+    volumes:
+      - ./api:/app
+    env_file:
+      - ./api/.env.dev
+    environment:
+      - DJANGO_SETTINGS_MODULE=app.settings.dev
+    depends_on:
+      - db
+    networks:
+      - fintrack_network
+
+  web:
+    build:
+      context: ./web
+    image: ghcr.io/ashishkapoor/fintrack-web:latest
+    ports:
+      - "5173:80"
+    depends_on:
+      - api
+    networks:
+      - fintrack_network
+    restart: always
+
+  db:
+    image: postgres:16-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    env_file:
+      - ./api/.env.dev
+    networks:
+      - fintrack_network
+    ports:
+      - "5432:5432"
+    restart: always 
+
+volumes:
+  postgres_data:
+
+networks:
+  fintrack_network:
+    driver: bridge

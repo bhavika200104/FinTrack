@@ -1,0 +1,66 @@
+[project]
+name = "advanced-django-blueprint"
+version = "0.1.0"
+description = "Advanced Django Blueprint"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "django>=5.1.7",
+    "django-extensions>=3.2.3",
+    "drf-spectacular[sidecar]>=0.28.0",
+    "pre-commit>=4.2.0",
+    "psycopg>=3.2.6",
+    "python-dotenv>=1.1.0",
+    "django-cors-headers>=4.7.0",
+    "djangorestframework-simplejwt>=5.5.0",
+    "django-cryptography>=1.1",
+    "psycopg2-binary>=2.9.9"
+]
+packages = [
+    { include = "app" },
+    { include = "pft" }
+]
+
+[tool.ruff]
+line-length = 88
+target-version = "py312"
+exclude = [
+    ".git",
+    "__pycache__",
+    ".venv",
+    "env",
+    "venv",
+    "migrations",
+    "node_modules",
+    "static",
+    "media",
+    "build",
+    "dist",
+    "settings",
+]
+
+[tool.ruff.lint]
+select = [
+    "E",    # pycodestyle errors
+    "F",    # pyflakes
+    "I",    # isort
+    "B",    # flake8-bugbear
+    "UP",   # pyupgrade
+    "C90",  # mccabe complexity
+]
+
+ignore = [
+    "E501",
+]
+
+fixable = ["ALL"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+line-ending = "lf"
+docstring-code-format = true
+docstring-code-line-length = 88
+
+[tool.poetry]
+package-mode = false
