@@ -190,29 +190,3 @@ The API documentation is available at:
 
 ---
 
-## 🤝 Contributing
-
-Contributions, issues, and feature requests are welcome!  
-Feel free to fork and submit a pull request.
-
----
-
-## 📄 License
-
-MIT License © 2025 [Sannty](https://github.com/ashishkapoor)
-
----
-
-## 💡 Inspiration
-
-FinTrack was built to give privacy-conscious users a simple but powerful way to manage their finances independently, free of subscription fees or vendor lock-in.
-
----
-
-## 🙌 Support
-
-If you find FinTrack useful, consider giving a ⭐ on GitHub or sharing it with others!
-
-## Star History
-
-[![Star History Chart](https://api.star-history.com/svg?repos=ashishkapoor/fintrack&type=Date)](https://www.star-history.com/#ashishkapoor/fintrack&Date)
